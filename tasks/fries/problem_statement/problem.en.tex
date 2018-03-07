@@ -1,0 +1,52 @@
+\def\version{1}
+\problemname{French Fries}
+
+An infinite number of people are standing in a line, which extends infinitely to both left and right.
+$P$ different people are selected to get one French fry each.
+Since this is somewhat unfair, everybody simultaneously takes all their French fries and split them in two, giving half to the person on the left and half to the person on the right.
+Then they repeat this, for $T-1$ more time steps.
+If a person after these $T$ time steps has at least $L$ French fries (where $L$ is not necessarily an integer), they will be full.
+How many people will become full?
+
+\section*{Input}
+The first line of input contains the two integers $P$ and $T$ ($1 \le P \le 3\cdot10^5$, $1 \le T \le 5\cdot10^7$),
+and the floating point number $L$ ($10^{-4} \le L \le 10$).
+The second line of input contains $P$ distinct integers: the indices of the people who initially get French fries.
+All indices of people will be between $0$ and $10^7$.
+
+\section*{Output}
+Print one integer: the number of people who will end up with at least $L$ fries.
+
+An answer $X$ will be treated as correct if it is between the number of people who get at least $0.8L$ fries, and
+the number who get at least $1.2L$ fries.
+
+\section*{Grading}
+Your solution will be graded on a set of subtasks. A subtask will consist of
+multiple test cases. To get the points for a subtask, your solution must pass
+all test cases that are part of the subtask.
+
+\noindent
+\begin{tabular}{| l | l | l l |}
+\hline
+Subtask & Score & Constraints \\ \hline
+% Naive solution
+  1 & 10 & $P \le 100$, &$T \leq 100$, all initial indices are between $0$ and $100$ \\ \hline
+% Slightly less naive solution
+  2 & 14 & $P \le 500$, &$T \leq 100$ \\ \hline
+% Precompute coefficients
+  3 & 17 & $P \le 3\cdot10^5$, &$T \leq 100$ \\ \hline
+% Precompute coefficients smarter (e.g. with logs)
+  4 & 13 & $P \le 100$, &$T \leq 10^5$ \\ \hline
+% Pruning for large T
+  5 & 20 & $P \le 500$, &$T \leq 5\cdot10^7$ \\ \hline
+% Piecewise approximation of distributions
+  6 & 26 & $P \le 3\cdot10^5$, &$T \leq 5\cdot10^7$ \\ \hline
+\end{tabular}
+
+\section*{Explanation of examples}
+In the first example, the people at indices $0$ and $2$ initially have one French fry each.
+After they split these into two and give half to their neighbors, the people at indices $-1$ and $3$ will have
+$0.5$ fries, while the person at index $1$ will have $1$. The limit for becoming full is $0.74$ French fries;
+thus, person $1$ is the only one who gets full.
+
+In the second example, the answer $13$ is accurate, but any output between $12$ and $15$ would be accepted.

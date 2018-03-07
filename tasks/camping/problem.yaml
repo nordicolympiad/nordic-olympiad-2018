@@ -1,0 +1,9 @@
+author: Tómas Ken Magnússon
+source: Nordic Olympiad in Informatics 2018
+rights_owner: Nordic Olympiad in Informatics 2018
+license: cc by-sa
+grading:
+    objective: max
+type: scoring
+limits:
+    time_multiplier: 4

@@ -1,0 +1,92 @@
+#!/usr/bin/env bash
+PPATH=$(realpath ..)
+. ../../../testdata_tools/gen.sh
+
+setup_dirs
+use_solution solution_pllk.cpp
+
+compile random_generator.py
+
+samplegroup
+sample 1
+sample 2
+
+group group1 23
+tc easy-02 random_generator rand1 10 1
+tc easy-03 random_generator rand1 10 2
+tc easy-04 random_generator rand1 10 3
+tc easy-05 random_generator rand1 10 4
+tc easy-06 random_generator rand1 10 5
+tc easy-07 random_generator rand1 10 6
+tc easy-08 random_generator rand1 10 7
+tc easy-09 random_generator rand1 10 8
+tc easy-10 random_generator rand1 10 9
+tc easy-11 random_generator rand1 10 10
+tc easy-13 random_generator rand2 10 1
+tc easy-14 random_generator rand2 10 2
+tc easy-15 random_generator rand2 10 3
+tc easy-16 random_generator rand2 10 4
+tc easy-17 random_generator rand2 10 5
+tc easy-18 random_generator rand2 10 6
+tc easy-19 random_generator rand2 10 7
+tc easy-20 random_generator rand2 10 8
+tc easy-21 random_generator rand2 10 9
+tc easy-22 random_generator rand2 10 10
+tc easy-24 random_generator inc1 10 10
+tc easy-25 random_generator inc2 10 10
+tc easy-26 random_generator same 10 10
+
+group group2 35
+include_group group1
+tc medium-02 random_generator rand1 1000 1
+tc medium-03 random_generator rand1 1000 5
+tc medium-04 random_generator rand1 1000 10
+tc medium-05 random_generator rand1 1000 50
+tc medium-06 random_generator rand1 1000 100
+tc medium-07 random_generator rand1 1000 200
+tc medium-08 random_generator rand1 1000 300
+tc medium-09 random_generator rand1 1000 700
+tc medium-10 random_generator rand1 1000 900
+tc medium-11 random_generator rand1 1000 1000
+tc medium-13 random_generator rand2 1000 1
+tc medium-14 random_generator rand2 1000 5
+tc medium-15 random_generator rand2 1000 10
+tc medium-16 random_generator rand2 1000 50
+tc medium-17 random_generator rand2 1000 100
+tc medium-18 random_generator rand2 1000 200
+tc medium-19 random_generator rand2 1000 300
+tc medium-20 random_generator rand2 1000 700
+tc medium-21 random_generator rand2 1000 900
+tc medium-22 random_generator rand2 1000 1000
+tc medium-24 random_generator inc1 1000 1000
+tc medium-25 random_generator inc2 1000 1000
+tc medium-26 random_generator same 1000 1000
+
+
+group group3 42
+include_group group2
+tc hard-02 random_generator rand1 200000 1
+tc hard-03 random_generator rand1 200000 10
+tc hard-04 random_generator rand1 200000 100
+tc hard-05 random_generator rand1 200000 1000
+tc hard-06 random_generator rand1 200000 10000
+tc hard-07 random_generator rand1 200000 30000
+tc hard-08 random_generator rand1 200000 50000
+tc hard-09 random_generator rand1 200000 70000
+tc hard-10 random_generator rand1 200000 90000
+tc hard-11 random_generator rand1 200000 200000
+tc hard-13 random_generator rand2 200000 1
+tc hard-14 random_generator rand2 200000 10
+tc hard-15 random_generator rand2 200000 100
+tc hard-16 random_generator rand2 200000 1000
+tc hard-17 random_generator rand2 200000 10000
+tc hard-18 random_generator rand2 200000 30000
+tc hard-19 random_generator rand2 200000 50000
+tc hard-20 random_generator rand2 200000 70000
+tc hard-21 random_generator rand2 200000 90000
+tc hard-22 random_generator rand2 200000 200000
+tc hard-24 random_generator inc1 200000 200000
+tc hard-25 random_generator inc2 200000 200000
+tc hard-26 random_generator same 200000 200000
+
+cleanup_programs

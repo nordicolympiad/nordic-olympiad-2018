@@ -1,0 +1,63 @@
+\def\version{1}
+\problemname{Nordic Camping}
+
+When camping in the highlands of the Nordic countries, having a reliable source
+of water can be a matter of life and death. Traditionally Nordic campers have
+always pitched their tents over a water source such that water can be fetched
+at any time without having to go outside. Another bizarre tradition of the
+Nordic people is their tents. They only use square tents.
+
+The campsites in the Nordic highlands can be very rough and rocky. Jon is
+currently setting up a new campsite and has surveyed all the usable spots on
+the campsite. Modeling the campsite as an $N$ by $M$ grid, Jon gives you a list
+of all the cells that are rough, and thus unusable. Jon now wants to figure out
+what is the largest tent that can be pitched on his campsite, only making use
+of smooth, usable cells, so that it covers a given water source.
+
+For each water source, can you help Jon determine the size of the largest
+square tent that can be pitched so that it covers that particular water source?
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.4\textwidth]{fig}
+  \caption{The second example test case and the area of the largest
+    square tent that covers the water source at $(3,2)$. This also happens to
+    be the largest square tent that covers the water source at $(5,4)$.}
+\end{figure}
+
+\section*{Input}
+The first line of input contains two space separated integers $N$ and $M$ ($1
+\leq N,M$). Then follow $N$ lines, each consisting of $M$ characters,
+representing the grid. Each character is either `\texttt{\#}' or `\texttt{.}',
+where `\texttt{.}' represents a smooth area of the campground and `\texttt{\#}'
+represents a rocky unusable area.
+
+Then follows a line with a single integer $Q$, the number of water sources Jon
+has under consideration. Each of the following $Q$ lines contains two integers
+$x$ and $y$ ($1 \leq x \leq N$, $1 \leq y \leq M$), giving the location $(x,y)$
+of a water source (a water source in row $x$, column $y$ of the grid).
+
+
+\section*{Output}
+For each water source Jon has under consideration, in the same order as in the
+input, output the ground area of the largest square tent that can be pitched
+on smooth, usable cells so that it covers that particular water source.
+
+Note that the tent may not be pitched so that it partially covers a cell.
+Either it covers it completely, or has an empty intersection with the cell.
+
+\section*{Grading}
+Your solution will be graded on a set of subtasks. A subtask will consist of
+multiple test cases. To get the points for a subtask, your solution must pass
+all test cases that are part of the subtask.
+
+\noindent
+\begin{tabular}{| l | l | l |}
+  \hline
+  Subtask & Score & Constraints \\ \hline
+  1 & 20 & $N,M \leq 50$, $Q\leq 1000$ \\ \hline
+  2 & 25 & $N,M \leq 800$, $K\leq 10^5$, $Q\leq 10^5$ \\ \hline
+  3 & 20 & $N\leq 10$, $M \leq 2000$, $Q\leq 500$ \\ \hline
+  4 & 35 & $N,M \leq 2000$, $K\leq 10^5$, $Q\leq 10^5$ \\ \hline
+\end{tabular}
+

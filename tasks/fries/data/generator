@@ -1,0 +1,90 @@
+#!/usr/bin/env bash
+PPATH=$(realpath ..)
+. ../../../testdata_tools/gen.sh
+
+setup_dirs
+use_solution ../bounds.cpp opt
+
+compile gen_random.py
+
+samplegroup
+limits p=100 t=5e7
+# samples have manual solutions
+
+group group1 10
+limits p=100 t=100 lim=100
+tc g1-01 gen_random p=100 t=100 l=0.1 lim=100
+tc g1-02 gen_random p=100 t=100 l=0.001 lim=100
+tc g1-03 gen_random p=30 t=100 l=0.3 lim=100
+tc g1-04 gen_random p=20 t=100 l=0.3 lim=100 dist=triangular
+tc g1-05 gen_random p=40 t=100 l=0.3 lim=100 parity=biased
+tc g1-06 gen_random p=20 t=100 l=0.1 lim=100 parity=even
+tc g1-07 gen_random p=20 t=100 l=0.2 lim=100 parity=odd
+tc g1-08 gen_random p=20 t=1 l=0.7 lim=100
+tc g1-09 gen_random p=20 t=1 l=10 lim=100
+tc g1-10 gen_random p=20 t=5 l=0.2 lim=100 seed=139
+tc g1-11 gen_random p=50 t=10 l=0.3 lim=100
+tc g1-12 gen_random p=10 t=10 l=0.15 lim=100 seed=129
+SEED=$((SEED - 3)) # don't disturb committed test data...
+
+group group2 14
+limits p=500 t=100
+include_group group1
+tc g2-01 gen_random p=500 t=100 l=mean lim=6000
+tc g2-02 gen_random p=500 t=100 l=mean lim=9000000,9100000
+tc g2-03 gen_random p=500 t=100 l=1e-3
+tc g2-04 gen_random p=500 t=100 l=1e-4 lim=5000 parity=biased
+tc g2-05 gen_random p=500 t=99 l=mean lim=5000 parity=odd dist=triangular
+
+group group3 17
+limits p=3e5 t=100
+include_group group2
+tc g3-01 gen_random p=300000 t=100 l=mean lim=3000000
+tc g3-02 gen_random p=300000 t=99 l=mean lim=3000000
+tc g3-03 gen_random p=300000 t=100 l=mean lim=10000000
+tc g3-04 gen_random p=300000 t=100 l=0.1 lim=10000000
+tc g3-05 gen_random p=300000 t=100 l=mean lim=10000000 dist=triangular
+tc g3-06 gen_random p=300000 t=100 l=mean lim=10000000 parity=biased dist=triangular
+tc g3-07 gen_random p=300000 t=10 l=mean lim=2000000 dist=triangular
+SEED=$((SEED - 1)) # don't disturb committed test data...
+
+group group4 13
+limits p=100 t=1e5
+include_group group1
+tc g4-01 gen_random p=100 t=100000 l=mean
+tc g4-02 gen_random p=100 t=100000 l=mean lim=100000
+tc g4-03 gen_random p=100 t=100000 l=1e-4 lim=100000
+tc g4-04 gen_random p=100 t=100000 l=1e-4 lim=1000000
+tc g4-05 gen_random p=100 t=100000 l=mean lim=1000000
+tc g4-06 gen_random p=100 t=100000 l=mean dist=triangular
+tc g4-07 gen_random p=100 t=100000 l=mean parity=biased dist=triangular
+
+group group5 20
+limits p=500 t=5e7
+include_group group2
+include_group group4
+tc g5-01 gen_random p=500 t=50000000 l=mean
+tc g5-02 gen_random p=500 t=49999999 l=mean
+tc g5-03 gen_random p=500 t=50000000 l=mean lim=2000000
+tc g5-04 gen_random p=500 t=50000000 l=mean lim=2000000 dist=triangular
+tc g5-05 gen_random p=500 t=50000000 l=mean lim=2000000 parity=odd
+tc g5-06 gen_random p=500 t=50000000 l=mean lim=2000000 parity=biased dist=triangular
+tc g5-07 gen_random p=500 t=500000 l=mean lim=200000
+
+group group6 26
+limits p=3e5 t=5e7
+include_group group3
+include_group group5
+tc g6-01 gen_random p=300000 t=50000000 l=1e-4 lim=600000
+tc g6-02 gen_random p=300000 t=50000000 l=9e-3
+tc g6-03 gen_random p=300000 t=50000000 l=9e-2
+tc g6-04 gen_random p=300000 t=5000 l=mean
+tc g6-05 gen_random p=300000 t=500000 l=mean
+tc g6-06 gen_random p=300000 t=50000000 l=mean
+tc g6-07 gen_random p=300000 t=50000000 l=0.2
+tc g6-08 gen_random p=300000 t=50000000 l=mean dist=triangular
+tc g6-09 gen_random p=300000 t=50000000 l=mean parity=biased dist=triangular
+tc g6-10 gen_random p=300000 t=49999999 l=9e-3
+tc g6-11 gen_random p=300000 t=49999999 l=mean
+
+cleanup_programs

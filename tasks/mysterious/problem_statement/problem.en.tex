@@ -1,0 +1,51 @@
+\def\version{1}
+\problemname{Mysterious Array}
+
+There is an array that contains a permutation of the numbers $1$, $2$, \ldots,
+$N$ (i.e., each number appears exactly once in the array).
+The elements of the array are $1$-indexed.
+
+However, you don't know the contents of the array. Instead, you are given the
+results of $Q$ queries of the form ``what is the minimum value between
+positions $a$ and $b$?''
+
+Your task is to count the number of arrays that match the queries.
+
+\section*{Input}
+The first input line contains two integers $N$ and $Q$: the size of the array
+and the number of queries.
+
+Then there are $Q$ lines that describe the queries. Each line contains three
+integers $a$, $b$, and $x$ ($1 \le a \le b \le N$ and $1 \le x \le N$):
+the minimum value between positions $a$ and $b$ is $x$.
+
+Note that the results of the queries might be inconsistent,
+and it is possible that no array matches them.
+
+\section*{Output}
+Print one integer: the number of arrays modulo $10^9+7$.
+
+\section*{Grading}
+Your solution will be graded on a set of subtasks. A subtask will consist of
+multiple test cases. To get the points for a subtask, your solution must pass
+all test cases that are part of the subtask.
+
+\noindent
+\begin{tabular}{| l | l | l |}
+\hline
+Subtask & Score & Constraints \\ \hline
+1 & 23 & $1 \leq N,Q \leq 10$ \\ \hline
+2 & 35 & $1 \leq N,Q \leq 1000$ \\ \hline
+3 & 42 & $1 \leq N,Q \leq 2\cdot 10^5$ \\ \hline
+\end{tabular}
+
+\section*{Explanation of examples}
+In the first example there is an array of size $3$, containing a permutation of
+the numbers $1$, $2$ and $3$. Additionally, it is given that the minimum among
+the numbers at indices between $1$ and $2$ is $2$, and the minimum among the
+numbers at indices between $1$ and $3$ (i.e.\ the whole array) is $1$.
+There are only two arrays matching these conditions: $[2,3,1]$ and $[3,2,1]$.
+
+In the second example there are $576$ arrays that match the given
+conditions.
+

@@ -1,0 +1,65 @@
+#!/usr/bin/env bash
+PPATH=$(realpath ..)
+. ../../../testdata_tools/gen.sh
+
+setup_dirs
+use_solution tomas.cpp
+
+compile circle.cpp
+compile random_generator.py
+
+samplegroup
+sample 01
+
+group group1 20
+tc small-01 circle 50 50 0 0 1000
+tc small-02 circle 48 50 100 0 1000
+tc small-03 circle 50 50 1000 0 1000
+tc small-04 circle 50 40 0 25 1000
+tc small-05 circle 50 50 100 25 1000
+tc small-06 circle 49 50 300 25 1000
+
+group group2 25
+include_group group1
+tc medium-01 circle 800 800 0 0 100000
+tc medium-02 circle 800 800 10 0 100000
+tc medium-03 circle 800 800 100 0 100000
+tc medium-04 circle 800 800 1000 0 100000
+tc medium-05 circle 800 800 10000 0 100000
+tc medium-06 circle 800 800 100000 0 100000
+tc medium-07 circle 800 800 0 400 100000
+tc medium-08 circle 800 800 10 400 100000
+tc medium-09 circle 800 800 100 400 100000
+tc medium-10 circle 800 800 1000 400 100000
+tc medium-11 circle 800 800 10000 400 100000
+tc medium-12 circle 800 800 100000 400 100000
+
+group group3 20
+tc long-01 circle 10 2000 0 0 500
+tc long-02 circle 10 2000 100 0 500
+tc long-03 circle 10 2000 1000 0 500
+tc long-04 circle 10 2000 2000 0 500
+tc long-05 circle 10 2000 4000 0 500
+tc long-06 circle 10 2000 8000 0 500
+tc long-07 circle 10 2000 15000 0 500
+
+group group4 35
+include_group group2
+tc big-01 circle 2000 2000 0 0 100000
+tc big-03 circle 2000 1800 100 0 100000
+tc big-05 circle 1800 2000 10000 0 100000
+tc big-06 circle 2000 2000 100000 0 100000
+tc big-13 circle 2000 2000 0 250 100000
+tc big-15 circle 2000 2000 100 250 100000
+tc big-16 circle 999 2000 1000 250 100000
+tc big-17 circle 2000 1999 10000 250 100000
+tc big-18 circle 2000 2000 100000 250 100000
+tc big-21 circle 1872 2000 100 600 100000
+tc big-22 circle 1992 1993 1000 600 100000
+tc big-24 circle 2000 2000 100000 600 100000
+tc big-26 circle 2000 2000 10 1000 100000
+tc big-28 circle 1900 2000 1000 1000 100000
+tc big-29 circle 2000 2000 10000 1000 100000
+tc big-30 circle 2000 2000 100000 1000 100000
+
+cleanup_programs
