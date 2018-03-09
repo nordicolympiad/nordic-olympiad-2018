@@ -2,9 +2,9 @@
 using namespace std;
 
 // FFT-based solution. Slightly too slow, alas -- it runs in
-// O(P + C log C) where C is the maximum coordinate size, and in
-// practice around 4x of the time limit. See fft_opt_sl.cpp
-// for an optimized version which passes on kattis.
+// O(C (log C + log T)) where C is the maximum coordinate size,
+// and in practice around 4x of the time limit. See fft_opt_sl.cpp
+// for a highly optimized version which passes on kattis.
 
 #define rep(i, from, to) for (int i = from; i < (to); ++i)
 #define trav(a, x) for (auto& a : x)
@@ -85,13 +85,14 @@ int main() {
 	// Forward FFT
 	fft(v, false);
 
-	// Closed form for Fourier transform of w with w[-1] = w[1] = 1, rest 0
+	// Closed form for Fourier transform of w with w[-1] = w[1] = 1, w[everything else] = 0
 	rep(i,0,n) {
 		cd x = polar(1.0, -2 * M_PI * i / n);
 		w[i] = 0.5 * x + 0.5 / x;
 	}
 
-	// In the Fourier world, convolving v with w T times is the same as pointwise multiplication by w[i]^T
+	// In the Fourier world, convolving v with w T times is the same as pointwise multiplication by w[i]^T.
+	// This takes time O(C log T), assuming exponentiation-by-squaring.
 	rep(i,0,n) {
 		v[i] *= pow(w[i], T);
 	}
