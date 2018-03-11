@@ -47,7 +47,7 @@ There are several possible ways one could work around this:
 \subsection*{Cutting tails: $O(P\sqrt T)$}
 If we stop to think about how Pascal's triangle looks, we note something: the values at its left and right ends are rather small.
 In fact, if $T$ is large, only about the $10 \sqrt T$ entries nearest the middle are relevant; the rest are almost zero when divided by $2^T$.
-This is a consequence of the Central Limit Theorem, which says that the distribution gets closer and closer to a \href{https://en.wikipedia.org/wiki/Normal_distribution}{normal distribution}.
+This is a consequence of the Central Limit Theorem, which says that the distribution gets closer and closer to a \href{https://en.wikipedia.org/wiki/Normal_distribution}{normal distribution} when $T$ gets large.
 The normal distribution has a standard deviation of $\sqrt T$, and has tails that go to zero very rapidly.
 
 The way we can use this is to take the previous solution, and when applying the pattern we only include values close to the middle -- this results in a runtime of $O(P\sqrt T)$.
